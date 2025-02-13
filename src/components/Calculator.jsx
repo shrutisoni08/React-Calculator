@@ -11,7 +11,7 @@ const Calculator = () => {
     "4", "5", "6", "*",
     "1", "2", "3", "-",
     "0", ".", "=", "+",
-    "C" // Added the Clear button
+    "C" 
   ]);
 
   // Drop target for buttons

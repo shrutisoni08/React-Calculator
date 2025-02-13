@@ -5,7 +5,7 @@ const useCalculatorStore = create((set) => ({
   input: "",
   history: [],
   future: [],
-  darkMode: false, // Added darkMode to initial state
+  darkMode: false, // Add darkMode to initial state
 
   updateInput: (value) =>
     set((state) => ({
