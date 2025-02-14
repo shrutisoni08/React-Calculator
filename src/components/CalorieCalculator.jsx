@@ -43,9 +43,9 @@ const CalorieCalculator = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center w-[80%] h-[90vh] bg-gradient-to-r from-[#E0F7FA] to-[#B2EBF2] px-6 dark:bg-gray-900">
+    <div className="main-div flex flex-col md:flex-row items-center justify-center w-[80%] h-[90vh] bg-gradient-to-r from-[#E0F7FA] to-[#B2EBF2] px-6 dark:bg-gray-900">
       {/* Sidebar */}
-      <div className="w-full md:w-1/4 h-[90%] bg-gray-800 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
+      <div className="res-div w-full md:w-1/4 h-[90%] bg-gray-800 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
         <h2 className="text-2xl font-bold mb-6 text-center">Menu</h2>
         <ul className="space-y-6 text-center">
           <li>
@@ -73,9 +73,9 @@ const CalorieCalculator = () => {
       </div>
 
       {/* Main Content */}
-      <div className="w-full md:w-3/4 flex flex-col items-center justify-center p-6">
+      <div className="contentbox-cal w-full md:w-3/4 flex flex-col items-center justify-center p-6">
         <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-xl p-8 w-full max-w-md">
-          <h2 className="text-3xl font-bold text-[#0CCCCC] mb-6 text-center dark:text-[#0CCCCC]">
+          <h2 className="main-heading text-3xl font-bold text-[#0CCCCC] mb-6 text-center dark:text-[#0CCCCC]">
             Calorie Calculator
           </h2>
 

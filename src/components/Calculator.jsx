@@ -74,9 +74,9 @@ const Calculator = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center w-[80%] h-[90vh] bg-gradient-to-r from-[#E0F7FA] to-[#B2EBF2] px-6">
+    <div className="main-div flex flex-col md:flex-row items-center justify-center w-[80%] h-[90vh] bg-gradient-to-r from-[#E0F7FA] to-[#B2EBF2] px-6">
     {/* Sidebar */}
-    <div className="w-full md:w-1/4 h-[90%] bg-gray-800 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
+    <div className="res-div w-full md:w-1/4 h-[90%] bg-gray-800 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
       <h2 className="text-2xl font-bold mb-6 text-center">Menu</h2>
       <ul className="space-y-6 text-center">
         <li><a href="/calculator" className="text-[#0CCCCC] hover:underline">Simple Calculator</a></li>
@@ -89,8 +89,8 @@ const Calculator = () => {
     <div className="w-6"></div>  
 
     {/* Calculator Box */}
-    <div className="w-full md:w-2/3 h-[85%] bg-white shadow-2xl rounded-2xl p-8 flex flex-col items-center">
-      <h2 className="text-3xl font-bold text-[#0CCCCC] mb-6">Calculator</h2>
+    <div className="contentbox w-full md:w-2/3 h-[85%] bg-white shadow-2xl rounded-2xl p-8 flex flex-col items-center">
+      <h2 className="main-heading text-3xl font-bold text-[#0CCCCC] mb-6">Calculator</h2>
 
       {/* Input Field (Drop Target) */}
       <input

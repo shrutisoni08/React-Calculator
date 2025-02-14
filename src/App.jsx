@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className={`h-screen w-screen flex flex-col ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}>
+      <div className={`w-screen flex flex-col ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}>
         <div className="flex flex-col items-center justify-center w-full h-screen relative">
           {/* Dark Mode Toggle Button */}
           <button

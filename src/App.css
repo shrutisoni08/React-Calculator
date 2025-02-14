@@ -1,1 +1,73 @@
 @import "tailwindcss";
+
+/* media querries for 320px */
+@media only screen and (max-width: 320px) {
+  .contentbox {
+    margin-top: 220px;
+    width: 100%;
+    padding: 5px;
+  }
+  .main-div {
+    margin-top: 130px;
+    width: 100%;
+    flex-direction: column-reverse;
+    gap: 5px;
+  }
+  .res-div {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .main-heading {
+    font-size: 25px;
+  }
+  .age-input {
+    width: 100%;
+  }
+  .age-button {
+    padding: 5px;
+    font-size: 18px;
+  }
+  .age-div {
+    padding: 0px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .contentbox-cal{
+    margin-top: 300px;
+    width: 100%;
+    padding: 5px;
+  }
+}
+@media only screen and (max-width: 426px) {
+    .contentbox {
+      margin-top: 220px;
+      width: 100%;
+      padding: 5px;
+    }
+    .main-div {
+      margin-top: 130px;
+      width: 100%;
+      flex-direction: column-reverse;
+      gap: 5px;
+    }
+    .res-div {
+      margin-top: 10px;
+      width: 100%;
+    }
+    .main-heading {
+      font-size: 25px;
+    }
+    .age-input {
+      width: 100%;
+    }
+    .age-button {
+      padding: 5px;
+      font-size: 18px;
+    }
+    .age-div {
+      padding: 0px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  

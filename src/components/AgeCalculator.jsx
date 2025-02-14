@@ -52,11 +52,11 @@ const AgeCalculator = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center w-[80%] h-[90vh] bg-gradient-to-r from-[#E0F7FA] to-[#B2EBF2] px-6">
+    <div className="main-div flex flex-col md:flex-row items-center justify-center w-[80%] h-[90vh] bg-gradient-to-r from-[#E0F7FA] to-[#B2EBF2] px-6">
       {/* Sidebar */}
-      <div className="w-full md:w-1/4 h-[90%] bg-gray-800 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
+      <div className="res-div w-full md:w-1/4 h-[90%] bg-gray-800 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
         <h2 className="text-2xl font-bold mb-6 text-center">Menu</h2>
-        <ul className="space-y-6 text-center">
+        <ul className="menu-list space-y-6 text-center">
           <li>
             <a href="/calculator" className="text-[#0CCCCC] hover:underline">
               Simple Calculator
@@ -76,13 +76,13 @@ const AgeCalculator = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col items-center justify-center flex-1 p-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">Age Calculator</h2>
+      <div className="contentbox flex flex-col items-center justify-center flex-1 p-6">
+        <h2 className="main-heading text-3xl font-bold mb-6 text-center">Age Calculator</h2>
 
         {/* Input Field */}
         <input
           type={isManual ? "text" : "date"}
-          className="p-3 border rounded-md mb-4 text-black w-full max-w-xs"
+          className="age-input p-3 border rounded-md mb-4 text-black w-full max-w-xs"
           value={birthDate}
           placeholder="YYYY-MM-DD"
           onChange={handleDateChange}
@@ -102,11 +102,11 @@ const AgeCalculator = () => {
         <p className="text-xl font-semibold mb-6">Result: {input}</p>
 
         {/* Number Pad with Clear Button */}
-        <div className="grid grid-cols-3 gap-3 w-full max-w-xs">
+        <div className="age-div grid grid-cols-3 gap-3 w-full max-w-xs">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
             <button
               key={num}
-              className="p-3 bg-gray-200 text-black rounded-md shadow-md hover:bg-gray-300 transition-all text-lg"
+              className="age-button p-3 bg-gray-200 text-black rounded-md shadow-md hover:bg-gray-300 transition-all text-lg"
               onClick={() => handleNumberClick(num)}
             >
               {num}
