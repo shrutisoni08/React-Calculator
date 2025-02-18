@@ -4,6 +4,7 @@ import useCalculatorStore from "./store/useCalculatorStore";
 import Calculator from "./components/Calculator";
 import AgeCalculator from "./components/AgeCalculator";
 import CalorieCalculator from "./components/CalorieCalculator";
+import AdvanceCal from "./components/AdvanceCal";
 import "./App.css";
 
 const App = () => {
@@ -36,6 +37,8 @@ const App = () => {
                     <Link to="/calculator" className="p-4 bg-[#0CCCCC] text-white rounded-md shadow-md hover:bg-[#0096AE] transition-all">Simple Normal Calculator</Link>
                     <Link to="/age-calculator" className="p-4 bg-[#0CCCCC] text-white rounded-md shadow-md hover:bg-[#0096AE] transition-all">Age Calculator</Link>
                     <Link to="/calorie-calculator" className="p-4 bg-[#0CCCCC] text-white rounded-md shadow-md hover:bg-[#0096AE] transition-all">Calorie Calculator</Link>
+                    <Link to="/advanced-calculator" className="p-4 bg-[#0CCCCC] text-white rounded-md shadow-md hover:bg-[#0096AE] transition-all">Advance Cal</Link>
+
                   </div>
                 </div>
               }
@@ -45,6 +48,8 @@ const App = () => {
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/age-calculator" element={<AgeCalculator />} />
             <Route path="/calorie-calculator" element={<CalorieCalculator />} />
+            <Route path="/advanced-calculator" element={<AdvanceCal />} />
+
           </Routes>
         </div>
       </div>

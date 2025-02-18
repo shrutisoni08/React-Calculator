@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import DraggableButton from "./DraggableButton";
 
@@ -55,6 +55,30 @@ const Calculator = () => {
     }
   };
 
+  // Handle Keyboard Input
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const { key } = event;
+      if (/[0-9\/*\-+.]/.test(key)) {
+        setInput((prev) => prev + key);
+      } else if (key === "Enter") {
+        try {
+          setInput(eval(input).toString());
+        } catch {
+          setInput("Error");
+        }
+      } else if (key === "Backspace") {
+        setInput((prev) => prev.slice(0, -1));
+      } else if (key === "Escape") {
+        setInput("");
+        setHistory([]);
+        setRedoStack([]);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [input]);
+
   // Undo Functionality
   const undo = () => {
     if (history.length > 0) {
@@ -81,6 +105,9 @@ const Calculator = () => {
       <ul className="space-y-6 text-center">
         <li><a href="/calculator" className="text-[#0CCCCC] hover:underline">Simple Calculator</a></li>
         <li><a href="/age-calculator" className="text-[#0CCCCC] hover:underline">Age Calculator</a></li>
+        <li>
+            <a href="/advanced-calculator" className="text-[#0CCCCC] hover:underline">Advanced Calculator</a>
+          </li>
         <li><a href="/calorie-calculator" className="text-[#0CCCCC] hover:underline">Calorie Calculator</a></li>
       </ul>
     </div>
@@ -94,14 +121,14 @@ const Calculator = () => {
 
       {/* Input Field (Drop Target) */}
       <input
-  ref={drop}
-  type="text"
-  value={input}
-  readOnly
-  className={`border p-3 rounded-lg mb-6 w-full max-w-md text-center text-xl font-semibold shadow-inner 
-    ${isOver ? "bg-gray-100" : "bg-white"} 
-    dark:bg-gray-800 dark:text-white dark:border-gray-600`}
-/>
+        ref={drop}
+        type="text"
+        value={input}
+        readOnly
+        className={`border p-3 rounded-lg mb-6 w-full max-w-md text-center text-xl font-semibold shadow-inner 
+          ${isOver ? "bg-gray-100" : "bg-white"} 
+          dark:bg-gray-800 dark:text-white dark:border-gray-600`}
+      />
 
       {/* Draggable Buttons */}
       <div className="grid grid-cols-5 gap-2 w-full max-w-md ">

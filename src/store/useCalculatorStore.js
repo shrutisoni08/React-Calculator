@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { evaluate } from "mathjs";
 
+const toRadians = (degrees) => (degrees * Math.PI) / 180;
+
 const useCalculatorStore = create((set) => ({
   input: "",
   history: [],
@@ -14,18 +16,64 @@ const useCalculatorStore = create((set) => ({
       future: [], // Clear redo history when new input is added
     })),
 
-  calculateResult: () => {
+    calculateResult: () => {
+      set((state) => {
+        try {
+          if (!state.input) return { input: "Error" };
+          
+          let expression = state.input.replace(/sin\(([^)]+)\)/g, (_, angle) => `sin(${toRadians(parseFloat(angle))})`);
+          expression = expression.replace(/cos\(([^)]+)\)/g, (_, angle) => `cos(${toRadians(parseFloat(angle))})`);
+          expression = expression.replace(/tan\(([^)]+)\)/g, (_, angle) => `tan(${toRadians(parseFloat(angle))})`);
+  
+          const result = evaluate(expression);
+          return {
+            input: String(result),
+            history: [...state.history, state.input],
+            future: [],
+          };
+        } catch (error) {
+          return { input: "Error" };
+        }
+      });
+    },
+
+  calculateScientific: (func) => {
     set((state) => {
       try {
-        if (!state.input) return { input: "Error" };
+        const expression = state.input;
+        let result;
 
-        const result = evaluate(state.input);
+        switch (func) {
+          case "sin":
+            result = Math.sin(evaluate(expression));
+            break;
+          case "cos":
+            result = Math.cos(evaluate(expression));
+            break;
+          case "tan":
+            result = Math.tan(evaluate(expression));
+            break;
+          case "log":
+            result = Math.log10(evaluate(expression));
+            break;
+          case "ln":
+            result = Math.log(evaluate(expression));
+            break;
+          case "exp":
+            result = Math.exp(evaluate(expression));
+            break;
+          case "sqrt":
+            result = Math.sqrt(evaluate(expression));
+            break;
+          default:
+            return { input: "Error" };
+        }
+
         return {
           input: String(result),
           history: [...state.history, state.input],
           future: [],
         };
-      // eslint-disable-next-line no-unused-vars
       } catch (error) {
         return { input: "Error" };
       }
@@ -36,25 +84,24 @@ const useCalculatorStore = create((set) => ({
     if (!birthDate) return;
     const birth = new Date(birthDate);
     if (isNaN(birth.getTime())) return; // Invalid date check
-  
+
     const today = new Date();
     let years = today.getFullYear() - birth.getFullYear();
     let months = today.getMonth() - birth.getMonth();
-  
+
     if (months < 0 || (months === 0 && today.getDate() < birth.getDate())) {
       years--;
       months += 12;
     }
-  
+
     const ageString = `${years} years and ${months} months`;
-  
+
     set((state) => ({
       input: ageString,
       history: [...state.history, state.input],
       future: [],
     }));
   },
-  
 
   clearInput: () =>
     set(() => ({

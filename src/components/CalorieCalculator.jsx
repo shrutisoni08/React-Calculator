@@ -62,6 +62,9 @@ const CalorieCalculator = () => {
             </a>
           </li>
           <li>
+            <a href="/advanced-calculator" className="text-[#0CCCCC] hover:underline">Advanced Calculator</a>
+          </li>
+          <li>
             <a
               href="/calorie-calculator"
               className="text-[#0CCCCC] hover:underline"

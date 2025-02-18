@@ -1,43 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useCalculatorStore from "../store/useCalculatorStore";
 
 const AgeCalculator = () => {
   const { input, calculateAge, undo, redo, updateInput, history, future } =
     useCalculatorStore();
   const [birthDate, setBirthDate] = useState("");
-  const [isManual, setIsManual] = useState(false); // Toggle for manual input
+  const [isManual, setIsManual] = useState(false);
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (/\d/.test(event.key)) {
+        handleNumberClick(event.key);
+      } else if (event.key === "Backspace") {
+        handleBackspace();
+      } else if (event.key === "Enter") {
+        handleCalculate();
+      } else if (event.key === "c" || event.key === "C") {
+        handleClear();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [birthDate]);
 
   const handleCalculate = () => {
     calculateAge(birthDate);
   };
 
   const formatDateInput = (value) => {
-    let newDate = value.replace(/\D/g, ""); // Remove non-numeric characters
-
+    let newDate = value.replace(/\D/g, "");
     if (newDate.length > 8) return birthDate;
-
     let formattedDate = "";
     if (newDate.length <= 4) {
-      formattedDate = newDate; 
+      formattedDate = newDate;
     } else if (newDate.length <= 6) {
       formattedDate = `${newDate.slice(0, 4)}-${newDate.slice(4)}`;
     } else {
       formattedDate = `${newDate.slice(0, 4)}-${newDate.slice(4, 6)}-${newDate.slice(6)}`;
     }
-
     return formattedDate;
   };
 
   const handleNumberClick = (num) => {
     if (!isManual) setIsManual(true);
-
     const newDate = formatDateInput(birthDate + num.toString());
     setBirthDate(newDate);
     updateInput(newDate);
-
     if (newDate.length === 10) {
       calculateAge(newDate);
     }
+  };
+
+  const handleBackspace = () => {
+    setBirthDate((prev) => prev.slice(0, -1));
+    updateInput(birthDate.slice(0, -1));
   };
 
   const handleDateChange = (e) => {
@@ -47,8 +66,8 @@ const AgeCalculator = () => {
   };
 
   const handleClear = () => {
-    setBirthDate(""); // Clear input field
-    updateInput(""); // Clear global store input
+    setBirthDate("");
+    updateInput("");
   };
 
   return (
@@ -66,6 +85,9 @@ const AgeCalculator = () => {
             <a href="/age-calculator" className="text-[#0CCCCC] hover:underline">
               Age Calculator
             </a>
+          </li>
+          <li>
+            <a href="/advanced-calculator" className="text-[#0CCCCC] hover:underline">Advanced Calculator</a>
           </li>
           <li>
             <a href="/calorie-calculator" className="text-[#0CCCCC] hover:underline">
